@@ -25,6 +25,47 @@ class UI {
     });
     this.post.innerHTML = output;
   }
+
+  showAlert(message, className){
+    this.clearAlert();
+
+    //Creat a div
+    const div = document.createElement('div');
+    
+    //Add class
+    div.className = className;
+
+    //Add text
+    div.appendChild(document.createTextNode(message));
+
+    //Get Parent
+    const container = document.querySelector('.postsContainer');
+
+    //Get posts
+    const posts = document.querySelector("#posts");
+
+    //Insert alert div
+    container.insertBefore(div, posts);
+
+    //Timeout
+    setTimeout(()=>{
+      this.clearAlert()
+    }, 3000)
+
+  }
+
+  clearAlert(){
+    const currentAlert = document.querySelector(".alert");
+
+    if(currentAlert){
+      currentAlert.remove();
+    }
+  }
+
+  clearFields(){
+    this.titleInput.value = "";
+    this.bodyInput.value = "";
+  }
 }
 
 export const ui = new UI()
